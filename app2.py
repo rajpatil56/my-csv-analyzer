@@ -1,20 +1,19 @@
-
 import pandas as pd
 import csv
 import streamlit as st
 from openai import OpenAI
 
 # -----------------------------
-# Initialize OpenRouter client
+# Load OpenRouter API key from Streamlit Secrets
 # -----------------------------
-API_KEY = # Replace with your key
+API_KEY = st.secrets["OPENROUTER_API_KEY"]
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
     api_key=API_KEY
 )
 
 # -----------------------------
-# Page Config (PC + Mobile)
+# Page Config
 # -----------------------------
 st.set_page_config(
     page_title="CSV AI Analyzer",
@@ -102,3 +101,4 @@ if uploaded_file:
                     st.markdown(response)
                 except Exception as e:
                     st.error(f"Error: {e}")
+                    
